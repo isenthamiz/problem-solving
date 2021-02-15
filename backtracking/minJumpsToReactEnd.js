@@ -26,21 +26,3 @@ const minJumps = function (arr) {
   let memo = new Array(arr.length).fill(0);
   return helper(arr, 0, arr.length - 1);
 };
-
-const minJumpsDp = function (arr) {
-  let n = arr.length,
-    dp = new Array(n).fill(Infinity);
-  dp[0] = 0;
-  for (let i = 0; i < n; i++) {
-    for (let j = i + 1; j < n; j++) {
-      if (j <= arr[i] + i) {
-        dp[j] = Math.min(dp[j], dp[i] + 1);
-      } else {
-        break;
-      }
-    }
-  }
-  return dp[n - 1];
-};
-
-console.log(minJumpsDp(arr));
