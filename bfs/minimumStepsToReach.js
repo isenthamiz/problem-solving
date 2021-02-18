@@ -56,4 +56,4 @@ class Board {
 
 let b = new Board(6);
 
-console.log(b.minimumStepToReach([0, 0], [5, 5]));
+console.log(b.minimumStepToReach([0, 0], [1, 1]));
