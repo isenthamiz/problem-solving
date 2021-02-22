@@ -1,5 +1,10 @@
-var lengthOfLongestSubstringKDistinct = function (s, k) {
-  let n = s.length;
+/**
+ * @param {number[]} tree
+ * @return {number}
+ */
+var totalFruit = function (tree) {
+  let n = tree.length,
+    k = 2;
   if (n * k == 0) {
     return 0;
   }
@@ -9,21 +14,19 @@ var lengthOfLongestSubstringKDistinct = function (s, k) {
   let hmap = new Map();
 
   while (right < n) {
-    hmap.set(s[right], right++);
+    hmap.set(tree[right], right++);
 
     if (hmap.size > k) {
       let lowIndex = Infinity;
       for (v of hmap.values()) {
         lowIndex = Math.min(lowIndex, v);
       }
-      hmap.delete(s[lowIndex]);
+      hmap.delete(tree[lowIndex]);
       left = lowIndex + 1;
     }
 
     max = Math.max(max, right - left);
   }
 
-  console.log(max);
+  return max;
 };
-
-lengthOfLongestSubstringKDistinct("loveleetcode", 4);
