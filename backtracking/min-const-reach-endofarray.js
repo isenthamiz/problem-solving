@@ -14,19 +14,14 @@ const minCostEndOfArray = function (arr) {
     if (i <= 0 && j <= 0) {
       return arr[0][0];
     }
-    if (dp[i][j] == -1) {
-      let c1 = helper(arr, i - 1, j);
-      let c2 = helper(arr, i, j - 1);
-      let minC = Math.min(c1, c2);
-      let currentC = arr[i][j];
-      return currentC + minC;
-    }
-    return dp[i][j];
+    let c1 = helper(arr, i - 1, j);
+    let c2 = helper(arr, i, j - 1);
+    let minC = Math.min(c1, c2);
+    let currentC = arr[i][j];
+    return currentC + minC;
   };
-
   let r = arr.length;
   let c = arr[0].length;
-  let dp = new Array(r).fill(-1).map((r) => new Array(c).fill(-1));
   let ans = helper(arr, r - 1, c - 1);
   console.log(ans);
 };
