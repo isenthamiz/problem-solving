@@ -1,55 +1,32 @@
-class Node {
-  constructor(data = null) {
-    this.left = null;
-    this.data = data;
-    this.right = null;
-  }
-}
-
-const str = "4(2(3)(1))(6(5))";
-
-const str2tree = function (str) {
-  if (!str) {
-    return null;
-  }
-  let stack = [];
-  let root = new Node();
-  stack.push(root);
-  let index = 0;
-  while (index < str.length) {
-    let node = stack.pop();
-    if (!isNaN(str[index]) || str[index] == "-") {
-      let pair = getNum(str, index);
-      node.data = pair[0];
-      index = pair[1];
-
-      if (index < str.length && str[index] == "(") {
-        stack.push(node);
-        node.left = new Node();
-        stack.push(node.left);
-      }
-    } else if (str[index] == "(" && node.left != null) {
-      stack.push(node);
-      node.right = new Node();
-      stack.push(node.right);
+var furthestBuilding = function (heights, bricks, ladders) {
+  const helper = function (heights, index, bricks, ladders) {
+    if (index >= heights.length) {
+      return 0;
     }
-    index++;
-  }
-  return !stack.length ? root : stack.pop();
+    if (bricks <= 0 && ladders <= 0) {
+      return 0;
+    }
+    let c1 = 0,
+      c2 = 0,
+      c3 = 0;
+    if (heights[index] > heights[index - 1]) {
+      let diff = heights[index] - heights[index - 1];
+      if (diff <= bricks) {
+        c1 += 1 + helper(heights, index + 1, bricks - diff, ladders);
+      }
+      if (ladders > 0) {
+        c2 += 1 + helper(heights, index + 1, bricks, ladders - 1);
+      }
+    } else {
+      c3 += 1 + helper(heights, index + 1, bricks, ladders);
+    }
+
+    return Math.max(c1, c2, c3);
+  };
+
+  return helper(heights, 0, bricks, ladders);
 };
 
-const getNum = function (s, i) {
-  let isNegative = false;
-  if (s[i] == "-") {
-    isNegative = true;
-    i++;
-  }
-  let number = 0;
-  while (i < s.length && !isNaN(s[i])) {
-    number = number * 10 + (s[i] - "0");
-    i++;
-  }
-  return [isNegative ? -number : number, i];
-};
+const arr = [4, 2, 7, 6, 9, 14, 12];
 
-console.log(str2tree(str));
+console.log(furthestBuilding(arr, 5, 1));

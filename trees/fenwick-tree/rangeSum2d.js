@@ -74,7 +74,3 @@ const grid = [
 ];
 
 let ft = new FenwickTree(grid);
-
-console.log(ft.BIT);
-
-console.log(ft.answerQuery(1, 1, 3, 2));
