@@ -16,7 +16,7 @@ var generateParenthesis = function (n) {
   let combination = [];
   let max = 2 * n;
   helper("", 0, 0, n);
-  console.log(combination);
+  return combination;
 };
 
-generateParenthesis(3);
+module.exports = generateParenthesis;
