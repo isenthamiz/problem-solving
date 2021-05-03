@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "args": [
+                
+                "${workspaceFolder}/test/*.test.js"
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "name": "Mocha Tests",
+            "program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Index",
@@ -13,15 +27,7 @@
             ],
             "program": "${workspaceFolder}/index.js"
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Data Structures",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/datastructure/avl-tree.js"
-        },
+        
         {
             "type": "node",
             "request": "launch",
