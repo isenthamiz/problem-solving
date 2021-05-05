@@ -1,33 +1,25 @@
-var numKLenSubstrNoRepeats = function (S, K) {
-  let start = 0,
-    end,
-    charFrequency = {},
-    count = 0;
-  for (let ch of S) {
-    charFrequency[ch] = 0;
-  }
-  for (end = 0; end < S.length; end++) {
-    let rightChar = S[end];
-
-    charFrequency[rightChar] += 1;
-
-    while (charFrequency[rightChar] > 1) {
-      let leftChar = S[start];
-      charFrequency[leftChar] -= 1;
-      start += 1;
+var jump = function (nums) {
+  const helper = function (nums, idx, cache) {
+    if (idx >= nums.length - 1) {
+      return 1;
     }
-
-    if (end - start + 1 === K) {
-      let leftChar = S[start];
-      charFrequency[leftChar] -= 1;
-      start += 1;
-      count += 1;
+    if (cache[idx] != 0) {
+      return cache[idx];
     }
-  }
-  return count;
+    let c1 = 0;
+    for (let i = 1; i <= nums[idx]; i++) {
+      c1 += helper(nums, idx + i, cache);
+      ans = Math.min(Infinity, c1);
+    }
+    return c1;
+  };
+
+  let ans = Infinity;
+  let cache = new Array(nums.length).fill(0);
+  helper(nums, 0, cache);
+  return ans;
 };
 
-const str = "havefunonleetcode";
-const k = 5;
+let arr = [2, 3, 1, 1, 4];
 
-console.log(numKLenSubstrNoRepeats(str, k));
+console.log(jump(arr));

@@ -29,7 +29,7 @@ const twoSum = function (arr, target, first, second, quadruplets) {
       if (left < right && arr[left] == arr[left - 1]) {
         left += 1;
       }
-      if (left < right && arr[right] == arr[right - 1]) {
+      if (left < right && arr[right] == arr[right + 1]) {
         right -= 1;
       }
     } else if (sum < target) {
