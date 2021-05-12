@@ -6,7 +6,7 @@ const binary_search = function (arr, key) {
   while (left <= right) {
     let mid = Math.floor(left + (right - left) / 2);
     if (key == arr[mid]) {
-      return mid;
+      return arr[mid];
     }
     if (is_assessending) {
       if (key < arr[mid]) {
@@ -23,9 +23,10 @@ const binary_search = function (arr, key) {
     }
   }
 
-  return left;
+  return -1;
 };
 
-console.log(binary_search([1, 2, 3, 4, 6, 7], 5));
+console.log(binary_search([4, 6, 10], 10));
+console.log(binary_search([1, 2, 3, 4, 5, 6, 7], 5));
 console.log(binary_search([10, 6, 4], 10));
 console.log(binary_search([10, 6, 4], 4));
