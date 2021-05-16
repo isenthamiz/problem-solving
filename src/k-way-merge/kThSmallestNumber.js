@@ -30,10 +30,8 @@ const kThSmallestNumber = function (nums, k) {
   return num;
 };
 
-const arr1 = [
-  [2, 6, 8],
-  [3, 6, 7],
-  [1, 3, 4],
-];
+const arr1 = [2, 6, 8];
+const arr2 = [3, 6, 7];
+const arr3 = [1, 3, 4];
 
-console.log(kThSmallestNumber(arr1, 5));
+console.log(kThSmallestNumber([arr1, arr2, arr3], 5));
